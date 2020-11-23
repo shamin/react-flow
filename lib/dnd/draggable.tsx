@@ -1,8 +1,9 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import Portal from '@space-kit/portal';
 import { useDragging } from './hooks';
 import { FlowPosition } from '../types';
 import { useDnd } from './provider';
+import { useInteralFlow } from '../flow/provider';
 
 interface DraggableProps {
   id: string;
@@ -10,6 +11,7 @@ interface DraggableProps {
   draggable?: boolean;
   clone?: boolean;
   onClick?: () => void;
+  blockTemplete: React.ReactChild;
 }
 
 export const Draggable: React.FC<DraggableProps> = ({
@@ -18,8 +20,14 @@ export const Draggable: React.FC<DraggableProps> = ({
   id,
   clone,
   onClick,
+  blockTemplete,
 }: DraggableProps) => {
   const { drag, setDrag, onDrop } = useDnd();
+  const { pushTemplate } = useInteralFlow();
+
+  useEffect(() => {
+    pushTemplate(id, blockTemplete);
+  }, [id, blockTemplete]);
 
   const onDragStart = (clickPosition: FlowPosition) => {
     setDrag(id);

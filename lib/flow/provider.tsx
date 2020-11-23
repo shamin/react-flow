@@ -1,15 +1,20 @@
 import React, { useContext, useState } from 'react';
 import { DndProvider } from '../dnd/provider';
-import { Block, BlockItem, FlowBlocks, FlowPosition, StringOrNull } from '../types';
+import { Block, FlowBlocks, FlowPosition, StringOrNull } from '../types';
 import FlowDragController from './flowDragController';
 import { addNewBlock, setInitialBlock } from './state/actions';
 import { useBlockState } from './state/reducer';
 
+interface Templates {
+  [id: string]: React.ReactChild;
+}
+
 interface FlowContextType {
   firstBlockPosition: FlowPosition;
-  onSetFirstBlockPosition: (position: FlowPosition) => void;
   padding: FlowPosition;
   blocks: Block[];
+  pushTemplate: (id: string, template: React.ReactChild) => void;
+  templates: Templates;
 }
 
 const FlowContext = React.createContext<FlowContextType>({} as FlowContextType);
@@ -24,6 +29,10 @@ interface FlowProviderProps {
 
 export const FlowProvider = ({ children, blocks, padding }: FlowProviderProps) => {
   const [{ blocks: blockItems }, dispatch] = useBlockState();
+  const [templates, setTemplates] = useState<Templates>({});
+  const pushTemplate = (id: string, template: React.ReactChild) => {
+    setTemplates((templates) => ({ ...templates, [id]: template }));
+  };
 
   const [firstBlockPosition, setFirstBlockPosition] = useState<FlowPosition>({
     x: 0,
@@ -69,9 +78,10 @@ export const FlowProvider = ({ children, blocks, padding }: FlowProviderProps) =
     <FlowContext.Provider
       value={{
         firstBlockPosition,
-        onSetFirstBlockPosition,
         padding,
         blocks: blockItems as Block[],
+        pushTemplate,
+        templates,
       }}
     >
       <DndProvider

@@ -1,6 +1,8 @@
+import { template } from '@babel/core';
 import React from 'react';
 import { Droppable } from '../dnd/droppable';
 import DraggableBlock from './draggableBlock';
+import { useInteralFlow } from './provider';
 
 interface DragHighlightProps {
   onDragOver: boolean;
@@ -35,15 +37,13 @@ interface BlockProps {
 }
 
 const BlockComponent: React.FC<BlockProps> = ({ x, y, name, id }: BlockProps) => {
+  const { templates } = useInteralFlow();
   return (
     <div
       style={{
         position: 'absolute',
         left: x,
         top: y,
-
-        background: 'goldenrod',
-        padding: 20,
       }}
     >
       <DraggableBlock
@@ -61,7 +61,18 @@ const BlockComponent: React.FC<BlockProps> = ({ x, y, name, id }: BlockProps) =>
             <DragHighlight onDragOver={onDragOver} />
           )}
         >
-          <div>{name}</div>
+          <div
+            style={{
+              background: 'goldenrod',
+              padding: 20,
+              width: 95,
+              height: 58,
+              boxSizing: 'border-box',
+            }}
+          >
+            {/* {name} */}
+            {templates[name]}
+          </div>
         </Droppable>
       </DraggableBlock>
     </div>
