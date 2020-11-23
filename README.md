@@ -37,14 +37,14 @@ import { FlowProvider } from '@space-kit/react-flow';
 
 #### Props Table
 
-| Prop              | Type                            | Description                    |
-| ----------------- | ------------------------------- | ------------------------------ | ------------------ |
-| `children`        | `React.ReactElement             | React.ReactElement[]`          | Any react children |
-| `blocks`          | `BlockItem[]`                   | Initial blocks                 |
-| `padding`         | `FlowPosition`                  | Gap between each blocks        |
-| `arrowColor`      | `string`                        | Color of the arrows            |
-| `onBlockSelected` | `(blockId: string) => void`     | Calls when a block is selected |
-| `onBlockChange`   | `(blocks: BlockItem[]) => void` | Calls when blocks are changed  |
+| Prop              | Type                                         | Description                    |
+| ----------------- | -------------------------------------------- | ------------------------------ |
+| `children`        | `React.ReactElement OR React.ReactElement[]` | Any react children             |
+| `blocks`          | `BlockItem[]`                                | Initial blocks                 |
+| `padding`         | `FlowPosition`                               | Gap between each blocks        |
+| `arrowColor`      | `string`                                     | Color of the arrows            |
+| `onBlockSelected` | `(blockId: string) => void`                  | Calls when a block is selected |
+| `onBlockChange`   | `(blocks: BlockItem[]) => void`              | Calls when blocks are changed  |
 
 ### Canvas
 
