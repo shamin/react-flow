@@ -13,7 +13,13 @@ interface CanvasProps {
 export const Canvas: React.FC<CanvasProps> = ({ style }: CanvasProps) => {
   const canvasRef = useRef(null);
 
-  const { firstBlockPosition, padding, blocks, setSelectedBlock } = useInteralFlow();
+  const {
+    firstBlockPosition,
+    padding,
+    blocks,
+    setSelectedBlock,
+    arrowColor,
+  } = useInteralFlow();
 
   const [firstBlockPos, setFirstBlockPos] = useState(firstBlockPosition);
 
@@ -62,7 +68,7 @@ export const Canvas: React.FC<CanvasProps> = ({ style }: CanvasProps) => {
           {blocksWithPosition.map((b) => (
             <React.Fragment key={b.id}>
               <BlockComponent x={b.x} y={b.y} name={b.name} id={b.id} />
-              {b.arrow && <Arrow {...b.arrow} />}
+              {b.arrow && <Arrow {...b.arrow} color={arrowColor} />}
             </React.Fragment>
           ))}
         </div>

@@ -5,6 +5,7 @@ interface ArrowProps {
   y: number;
   arrowPath: string;
   pointerPath: string;
+  color: string;
 }
 
 export const Arrow: React.FC<ArrowProps> = ({
@@ -12,8 +13,8 @@ export const Arrow: React.FC<ArrowProps> = ({
   y,
   arrowPath,
   pointerPath,
+  color = '#000000',
 }: ArrowProps) => {
-  const color = '#000';
   return (
     <div
       className="arrow-block"

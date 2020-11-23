@@ -18,6 +18,7 @@ interface FlowContextType {
   templates: Templates;
   selectedBlock: number;
   setSelectedBlock: (blockId: number, blockName: string) => void;
+  arrowColor: string;
 }
 
 const FlowContext = React.createContext<FlowContextType>({} as FlowContextType);
@@ -29,12 +30,14 @@ interface FlowProviderProps {
   blocks: FlowBlocks;
   padding: FlowPosition;
   onBlockSelected: (blockId: string) => void;
+  arrowColor?: string;
 }
 
 export const FlowProvider = ({
   children,
   blocks,
   padding,
+  arrowColor = '#000000',
   onBlockSelected,
 }: FlowProviderProps) => {
   const [{ blocks: blockItems }, dispatch] = useBlockState();
@@ -106,6 +109,7 @@ export const FlowProvider = ({
         templates,
         selectedBlock,
         setSelectedBlock: onSetSelectedBlock,
+        arrowColor,
       }}
     >
       <DndProvider

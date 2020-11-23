@@ -14,7 +14,7 @@ const DragHighlight = ({ onDragOver }: DragHighlightProps) => {
   return (
     <div
       style={{
-        background: 'blue',
+        background: '#217CE8',
         position: 'absolute',
         top: '100%',
         left: '50%',
@@ -23,6 +23,7 @@ const DragHighlight = ({ onDragOver }: DragHighlightProps) => {
         borderRadius: '100%',
         transform: 'translate(-50%, -50%)',
         pointerEvents: 'none',
+        zIndex: 1,
       }}
     ></div>
   );

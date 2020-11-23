@@ -19,6 +19,7 @@ const App = () => (
   <FlowProvider
     blocks={[]}
     padding={{ x: 20, y: 80 }}
+    arrowColor="#ffffff"
     onBlockSelected={(blockId: string) => {
       console.log('Block selected', blockId);
     }}
