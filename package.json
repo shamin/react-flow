@@ -1,6 +1,6 @@
 {
   "name": "@space-kit/react-flow",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Create flow charts in react",
   "main": "lib/index.js",
   "scripts": {
