@@ -3,7 +3,7 @@ import { useDnd } from '../dnd/provider';
 import { Block, BlockItem, FlowPosition, StringOrNull } from '../types';
 import CanvasPortal from './canvasPortal';
 import { getAllChildrenBlocks } from './core';
-import { Action, attachBlocks, removeBlocks } from './state/actions';
+import { Action, attachBlocks, removeBlocksDrag } from './state/actions';
 import { setNotDraggingStyles } from './styles';
 
 interface FlowDragContextTypes {
@@ -69,7 +69,7 @@ const FlowDragController = ({
     const children = getAllChildrenBlocks(blocks as Block[], {
       id: blockId,
     });
-    dispatch(removeBlocks([blockId, ...children.map((c) => c.id)]));
+    dispatch(removeBlocksDrag([blockId, ...children.map((c) => c.id)]));
 
     setDragPos(dragPos);
     setClickPos(clickPos);

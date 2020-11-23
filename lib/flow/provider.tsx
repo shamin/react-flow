@@ -1,8 +1,14 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { DndProvider } from '../dnd/provider';
 import { Block, BlockItem, FlowPosition, Template } from '../types';
+import { getAllChildrenBlocks } from './core';
 import FlowDragController from './flowDragController';
-import { addNewBlock, setBlocks, setInitialBlock } from './state/actions';
+import {
+  addNewBlock,
+  removeBlocks,
+  setBlocks,
+  setInitialBlock,
+} from './state/actions';
 import { useBlockState } from './state/reducer';
 import { setNotDraggingStyles } from './styles';
 
@@ -19,11 +25,16 @@ interface FlowContextType {
   selectedBlock: number;
   setSelectedBlock: (blockId: number, blockName: string) => void;
   arrowColor: string;
+  removeBlock: (blockId: number) => void;
 }
 
 const FlowContext = React.createContext<FlowContextType>({} as FlowContextType);
 
 export const useInteralFlow = () => useContext(FlowContext);
+export const useFlow = () => {
+  const { blocks, removeBlock } = useContext(FlowContext);
+  return { blocks, removeBlock };
+};
 
 interface FlowProviderProps {
   children: React.ReactElement | React.ReactElement[];
@@ -108,6 +119,13 @@ export const FlowProvider = ({
     );
   };
 
+  const removeBlock = (blockId: number) => {
+    const children = getAllChildrenBlocks(blockItems as Block[], {
+      id: blockId,
+    });
+    dispatch(removeBlocks([blockId, ...children.map((c) => c.id)]));
+  };
+
   return (
     <FlowContext.Provider
       value={{
@@ -119,6 +137,7 @@ export const FlowProvider = ({
         selectedBlock,
         setSelectedBlock: onSetSelectedBlock,
         arrowColor,
+        removeBlock,
       }}
     >
       <DndProvider

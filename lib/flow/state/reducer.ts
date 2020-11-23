@@ -19,7 +19,6 @@ const reducer = (state: State, action: Action): State => {
     case 'addNewBlock':
       return {
         ...state,
-
         blocks: [
           ...state.blocks,
           {
@@ -27,12 +26,6 @@ const reducer = (state: State, action: Action): State => {
             id: Math.max(...state.blocks.map((b) => b.id)) + 1,
           },
         ],
-      };
-    case 'removeBlocks':
-      return {
-        ...state,
-        blocks: state.blocks.filter((b) => !action.blockIds.includes(b.id)),
-        drag: true,
       };
     case 'attachBlocks':
       return {
@@ -44,6 +37,12 @@ const reducer = (state: State, action: Action): State => {
           ),
         ],
         drag: false,
+      };
+    case 'removeBlocks':
+      return {
+        ...state,
+        blocks: state.blocks.filter((b) => !action.blockIds.includes(b.id)),
+        drag: action.drag,
       };
     default:
       throw new Error();

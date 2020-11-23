@@ -4,8 +4,8 @@ export type Action =
   | { type: 'setBlocks'; blocks: BlockItem[] }
   | { type: 'setInitialBlock'; block: BlockItem }
   | { type: 'addNewBlock'; block: BlockItem }
-  | { type: 'removeBlocks'; blockIds: number[] }
-  | { type: 'attachBlocks'; blocks: BlockItem[]; newParent: number };
+  | { type: 'attachBlocks'; blocks: BlockItem[]; newParent: number }
+  | { type: 'removeBlocks'; blockIds: number[]; drag: boolean };
 
 export const setBlocks = (blocks: BlockItem[]): Action => ({
   type: 'setBlocks',
@@ -22,9 +22,16 @@ export const addNewBlock = (block: BlockItem): Action => ({
   block,
 });
 
+export const removeBlocksDrag = (blockIds: number[]): Action => ({
+  type: 'removeBlocks',
+  blockIds,
+  drag: true,
+});
+
 export const removeBlocks = (blockIds: number[]): Action => ({
   type: 'removeBlocks',
   blockIds,
+  drag: false,
 });
 
 export const attachBlocks = (blocks: BlockItem[], newParent: number): Action => ({
