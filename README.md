@@ -84,7 +84,7 @@ import { DraggableBlock } from '@space-kit/react-flow';
 <DraggableBlock
   id="block1"
   draggable
-  blockTemplete={({ isActive }) => (
+  blockTemplate={({ isActive }) => (
     <DragTemplate data="Block 1" isActive={isActive} />
   )}
   width={100}
@@ -103,7 +103,7 @@ import { DraggableBlock } from '@space-kit/react-flow';
 | `draggable`     | `boolean`                                         | Is the block draggable                                                                 |
 | `clone`         | `boolean`                                         | Does the drag clone the component                                                      |
 | `onClick`       | `() => void`                                      | Calls when a draggable is clicked                                                      |
-| `blockTemplete` | `(component: ComponentProps) => React.ReactChild` | React component that needs to be rendered in the canvas                                |
+| `blockTemplate` | `(component: ComponentProps) => React.ReactChild` | React component that needs to be rendered in the canvas                                |
 | `width`         | `number`                                          | Width of the block                                                                     |
 | `height`        | `number`                                          | Height of the block                                                                    |
 

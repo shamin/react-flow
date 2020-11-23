@@ -11,7 +11,7 @@ interface DraggableProps {
   draggable?: boolean;
   clone?: boolean;
   onClick?: () => void;
-  blockTemplete: Template['component'];
+  blockTemplate: Template['component'];
   width: number;
   height: number;
 }
@@ -22,7 +22,7 @@ export const Draggable: React.FC<DraggableProps> = ({
   id,
   clone,
   onClick,
-  blockTemplete,
+  blockTemplate,
   width,
   height,
 }: DraggableProps) => {
@@ -33,9 +33,9 @@ export const Draggable: React.FC<DraggableProps> = ({
     pushTemplate(id, {
       width,
       height,
-      component: blockTemplete,
+      component: blockTemplate,
     });
-  }, [id, blockTemplete]);
+  }, [id, blockTemplate]);
 
   const onDragStart = (clickPosition: FlowPosition) => {
     setDrag(id);

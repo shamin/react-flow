@@ -82,7 +82,7 @@ const App = () => (
     <DraggableBlock
       id="block1"
       draggable
-      blockTemplete={({ isActive }) => (
+      blockTemplate={({ isActive }) => (
         <DragTemplate data="Block 1" isActive={isActive} />
       )}
       width={100}
@@ -93,7 +93,7 @@ const App = () => (
     <DraggableBlock
       id="block2"
       draggable
-      blockTemplete={({ isActive }) => (
+      blockTemplate={({ isActive }) => (
         <DragTemplate data="Block 2" isActive={isActive} />
       )}
       width={100}
@@ -104,7 +104,7 @@ const App = () => (
     <DraggableBlock
       id="block3"
       draggable
-      blockTemplete={({ isActive }) => (
+      blockTemplate={({ isActive }) => (
         <DragTemplate data="Block 3" isActive={isActive} />
       )}
       width={100}
