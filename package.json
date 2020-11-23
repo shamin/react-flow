@@ -14,7 +14,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/shamin/react-flowy.git"
+    "url": "git+https://github.com/shamin/react-flow.git"
   },
   "keywords": [
     "flow chart",
@@ -24,7 +24,7 @@
   "license": "MIT",
   "author": "Shamin",
   "bugs": {
-    "url": "https://github.com/shamin/react-flowy/issues"
+    "url": "https://github.com/shamin/react-flow/issues"
   },
   "dependencies": {
     "@space-kit/portal": "0.1.0-alpha.1",
@@ -61,5 +61,5 @@
   "publishConfig": {
     "access": "public"
   },
-  "homepage": "https://github.com/shamin/react-flowy#readme"
+  "homepage": "https://github.com/shamin/react-flow#readme"
 }

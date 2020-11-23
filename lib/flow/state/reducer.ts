@@ -8,6 +8,10 @@ interface State {
 
 const reducer = (state: State, action: Action): State => {
   switch (action.type) {
+    case 'setBlocks':
+      return {
+        blocks: action.blocks,
+      };
     case 'setInitialBlock':
       return { blocks: [action.block] };
     case 'addNewBlock':

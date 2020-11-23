@@ -1,8 +1,8 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { DndProvider } from '../dnd/provider';
-import { Block, FlowBlocks, FlowPosition, StringOrNull, Template } from '../types';
+import { Block, BlockItem, FlowBlocks, FlowPosition, Template } from '../types';
 import FlowDragController from './flowDragController';
-import { addNewBlock, setInitialBlock } from './state/actions';
+import { addNewBlock, setBlocks, setInitialBlock } from './state/actions';
 import { useBlockState } from './state/reducer';
 import { setNotDraggingStyles } from './styles';
 
@@ -27,7 +27,7 @@ export const useInteralFlow = () => useContext(FlowContext);
 
 interface FlowProviderProps {
   children: React.ReactElement | React.ReactElement[];
-  blocks: FlowBlocks;
+  blocks: BlockItem[];
   padding: FlowPosition;
   onBlockSelected: (blockId: string) => void;
   arrowColor?: string;
@@ -47,14 +47,15 @@ export const FlowProvider = ({
   };
 
   const [firstBlockPosition, setFirstBlockPosition] = useState<FlowPosition>({
-    x: 0,
-    y: 0,
+    x: 100,
+    y: 100,
   });
 
   const [selectedBlock, setSelectedBlock] = useState<number>(-1);
 
   useEffect(() => {
     setNotDraggingStyles();
+    dispatch(setBlocks(blocks));
   }, []);
 
   const onSetFirstBlockPosition = (position: FlowPosition) => {

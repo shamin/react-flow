@@ -1,6 +1,49 @@
 import React from 'react';
 import { Canvas, DraggableBlock, FlowProvider } from '../lib';
 
+const blocks = [
+  {
+    parent: -1,
+    id: 0,
+    name: 'block2',
+    type: 'block2',
+    width: 100,
+    height: 60,
+  },
+  {
+    parent: 0,
+    id: 1,
+    name: 'block3',
+    type: 'block3',
+    width: 100,
+    height: 60,
+  },
+  {
+    parent: 0,
+    id: 2,
+    name: 'block1',
+    type: 'block1',
+    width: 100,
+    height: 60,
+  },
+  {
+    parent: 1,
+    id: 3,
+    name: 'block3',
+    type: 'block3',
+    width: 100,
+    height: 60,
+  },
+  {
+    parent: 1,
+    id: 4,
+    name: 'block1',
+    type: 'block1',
+    width: 100,
+    height: 60,
+  },
+];
+
 const DragTemplate = ({ data, isActive }: any) => (
   <div
     style={{
@@ -17,7 +60,7 @@ const DragTemplate = ({ data, isActive }: any) => (
 
 const App = () => (
   <FlowProvider
-    blocks={[]}
+    blocks={blocks}
     padding={{ x: 20, y: 80 }}
     arrowColor="#ffffff"
     onBlockSelected={(blockId: string) => {
