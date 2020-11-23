@@ -13,7 +13,7 @@ const DndContext = React.createContext<DndContextType>({} as DndContextType);
 export const useDnd = () => useContext(DndContext);
 
 interface DndProviderProps {
-  children: React.ReactElement | React.ReactElement[];
+  children: React.ReactNode;
   onDrop: (
     drag: StringOrNull,
     drop: StringOrNull,

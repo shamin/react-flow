@@ -23,7 +23,6 @@ export const Draggable: React.FC<DraggableProps> = ({
 
   const onDragStart = (clickPosition: FlowPosition) => {
     setDrag(id);
-    // onDragStart && onDragStart(clickPosition);
   };
 
   const onDragEnd = (dropPosition: FlowPosition) => {

@@ -2,7 +2,7 @@ import React from 'react';
 import { Canvas, DraggableBlock, FlowProvider } from '../lib';
 
 const App = () => (
-  <FlowProvider blocks={[]}>
+  <FlowProvider blocks={[]} padding={{ x: 20, y: 80 }}>
     <Canvas
       style={{
         width: '100%',

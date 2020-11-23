@@ -51,6 +51,7 @@ export const Droppable: React.FC<DroppableProps> = ({
       {children}
       {droppable && drag && (
         <span
+          id="flow-drop"
           style={{
             position: 'absolute',
             width: '100%',

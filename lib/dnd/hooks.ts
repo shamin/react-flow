@@ -60,7 +60,7 @@ export const useDragging = (
       window.removeEventListener('mousemove', onMouseMove);
       window.removeEventListener('mouseup', onMouseUp);
     };
-  }, [watchMove, dragging]);
+  }, [watchMove, dragging, onDragEnd]);
 
   return {
     onMouseDownHandler,
