@@ -1,7 +1,19 @@
 import React from 'react';
 import { Canvas, DraggableBlock, FlowProvider } from '../lib';
 
-const DragTemplate = ({ data }: any) => <div>{data}</div>;
+const DragTemplate = ({ data }: any) => (
+  <div
+    style={{
+      background: 'goldenrod',
+      padding: 20,
+      width: 100,
+      height: 60,
+      boxSizing: 'border-box',
+    }}
+  >
+    {data}
+  </div>
+);
 
 const App = () => (
   <FlowProvider blocks={[]} padding={{ x: 20, y: 80 }}>
@@ -18,6 +30,8 @@ const App = () => (
       id="block1"
       draggable
       blockTemplete={<DragTemplate data="Block 1" />}
+      width={100}
+      height={60}
     >
       Blocks
     </DraggableBlock>
@@ -25,6 +39,8 @@ const App = () => (
       id="block2"
       draggable
       blockTemplete={<DragTemplate data="Block 2" />}
+      width={100}
+      height={60}
     >
       Block 2
     </DraggableBlock>
@@ -32,6 +48,8 @@ const App = () => (
       id="block3"
       draggable
       blockTemplete={<DragTemplate data="Block 3" />}
+      width={100}
+      height={60}
     >
       Blocks 3
     </DraggableBlock>

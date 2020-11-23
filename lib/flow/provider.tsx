@@ -6,14 +6,25 @@ import { addNewBlock, setInitialBlock } from './state/actions';
 import { useBlockState } from './state/reducer';
 
 interface Templates {
-  [id: string]: React.ReactChild;
+  [id: string]: {
+    width: number;
+    height: number;
+    component: React.ReactChild;
+  };
 }
 
 interface FlowContextType {
   firstBlockPosition: FlowPosition;
   padding: FlowPosition;
   blocks: Block[];
-  pushTemplate: (id: string, template: React.ReactChild) => void;
+  pushTemplate: (
+    id: string,
+    template: {
+      width: number;
+      height: number;
+      component: React.ReactChild;
+    }
+  ) => void;
   templates: Templates;
 }
 
@@ -30,7 +41,14 @@ interface FlowProviderProps {
 export const FlowProvider = ({ children, blocks, padding }: FlowProviderProps) => {
   const [{ blocks: blockItems }, dispatch] = useBlockState();
   const [templates, setTemplates] = useState<Templates>({});
-  const pushTemplate = (id: string, template: React.ReactChild) => {
+  const pushTemplate = (
+    id: string,
+    template: {
+      width: number;
+      height: number;
+      component: React.ReactChild;
+    }
+  ) => {
     setTemplates((templates) => ({ ...templates, [id]: template }));
   };
 
@@ -56,8 +74,8 @@ export const FlowProvider = ({ children, blocks, padding }: FlowProviderProps) =
           id: 0,
           name: drag,
           type: drag,
-          width: 95,
-          height: 58,
+          width: templates[drag].width,
+          height: templates[drag].height,
         })
       );
       return;
@@ -68,8 +86,8 @@ export const FlowProvider = ({ children, blocks, padding }: FlowProviderProps) =
         id: 0,
         name: drag,
         type: drag,
-        width: 95,
-        height: 58,
+        width: templates[drag].width,
+        height: templates[drag].height,
       })
     );
   };

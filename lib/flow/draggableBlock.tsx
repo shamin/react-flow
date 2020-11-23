@@ -62,6 +62,7 @@ const useDragging = (
   ) => void
 ) => {
   const [watchMove, setWatchMove] = useState<boolean>(false);
+  const [dragging, setDragging] = useState<boolean>(false);
   const [clickPos, setClickPos] = useState<FlowPosition>({
     x: 0,
     y: 0,
@@ -88,16 +89,18 @@ const useDragging = (
 
   useEffect(() => {
     const onMouseMove = () => {
+      setDragging(true);
       if (watchMove) {
         onDragStart(clickPos, dragPos);
       }
     };
 
     const onMouseUp = () => {
-      setWatchMove(false);
-      if (!watchMove) {
+      if (!dragging) {
         onDraggableClick && onDraggableClick();
       }
+      setDragging(false);
+      setWatchMove(false);
     };
 
     if (watchMove) {
