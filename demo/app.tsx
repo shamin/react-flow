@@ -1,10 +1,10 @@
 import React from 'react';
 import { Canvas, DraggableBlock, FlowProvider } from '../lib';
 
-const DragTemplate = ({ data }: any) => (
+const DragTemplate = ({ data, isActive }: any) => (
   <div
     style={{
-      background: 'goldenrod',
+      background: isActive ? 'rebeccapurple' : 'goldenrod',
       padding: 20,
       width: 100,
       height: 60,
@@ -16,7 +16,13 @@ const DragTemplate = ({ data }: any) => (
 );
 
 const App = () => (
-  <FlowProvider blocks={[]} padding={{ x: 20, y: 80 }}>
+  <FlowProvider
+    blocks={[]}
+    padding={{ x: 20, y: 80 }}
+    onBlockSelected={(blockId: string) => {
+      console.log('Block selected', blockId);
+    }}
+  >
     <Canvas
       style={{
         width: '100%',
@@ -29,7 +35,9 @@ const App = () => (
     <DraggableBlock
       id="block1"
       draggable
-      blockTemplete={<DragTemplate data="Block 1" />}
+      blockTemplete={({ isActive }) => (
+        <DragTemplate data="Block 1" isActive={isActive} />
+      )}
       width={100}
       height={60}
     >
@@ -38,7 +46,9 @@ const App = () => (
     <DraggableBlock
       id="block2"
       draggable
-      blockTemplete={<DragTemplate data="Block 2" />}
+      blockTemplete={({ isActive }) => (
+        <DragTemplate data="Block 2" isActive={isActive} />
+      )}
       width={100}
       height={60}
     >
@@ -47,7 +57,9 @@ const App = () => (
     <DraggableBlock
       id="block3"
       draggable
-      blockTemplete={<DragTemplate data="Block 3" />}
+      blockTemplete={({ isActive }) => (
+        <DragTemplate data="Block 3" isActive={isActive} />
+      )}
       width={100}
       height={60}
     >

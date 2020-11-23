@@ -1,31 +1,23 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { DndProvider } from '../dnd/provider';
-import { Block, FlowBlocks, FlowPosition, StringOrNull } from '../types';
+import { Block, FlowBlocks, FlowPosition, StringOrNull, Template } from '../types';
 import FlowDragController from './flowDragController';
 import { addNewBlock, setInitialBlock } from './state/actions';
 import { useBlockState } from './state/reducer';
+import { setNotDraggingStyles } from './styles';
 
 interface Templates {
-  [id: string]: {
-    width: number;
-    height: number;
-    component: React.ReactChild;
-  };
+  [id: string]: Template;
 }
 
 interface FlowContextType {
   firstBlockPosition: FlowPosition;
   padding: FlowPosition;
   blocks: Block[];
-  pushTemplate: (
-    id: string,
-    template: {
-      width: number;
-      height: number;
-      component: React.ReactChild;
-    }
-  ) => void;
+  pushTemplate: (id: string, template: Template) => void;
   templates: Templates;
+  selectedBlock: number;
+  setSelectedBlock: (blockId: number, blockName: string) => void;
 }
 
 const FlowContext = React.createContext<FlowContextType>({} as FlowContextType);
@@ -36,19 +28,18 @@ interface FlowProviderProps {
   children: React.ReactElement | React.ReactElement[];
   blocks: FlowBlocks;
   padding: FlowPosition;
+  onBlockSelected: (blockId: string) => void;
 }
 
-export const FlowProvider = ({ children, blocks, padding }: FlowProviderProps) => {
+export const FlowProvider = ({
+  children,
+  blocks,
+  padding,
+  onBlockSelected,
+}: FlowProviderProps) => {
   const [{ blocks: blockItems }, dispatch] = useBlockState();
   const [templates, setTemplates] = useState<Templates>({});
-  const pushTemplate = (
-    id: string,
-    template: {
-      width: number;
-      height: number;
-      component: React.ReactChild;
-    }
-  ) => {
+  const pushTemplate = (id: string, template: Template) => {
     setTemplates((templates) => ({ ...templates, [id]: template }));
   };
 
@@ -57,8 +48,21 @@ export const FlowProvider = ({ children, blocks, padding }: FlowProviderProps) =
     y: 0,
   });
 
+  const [selectedBlock, setSelectedBlock] = useState<number>(-1);
+
+  useEffect(() => {
+    setNotDraggingStyles();
+  }, []);
+
   const onSetFirstBlockPosition = (position: FlowPosition) => {
     setFirstBlockPosition(position);
+  };
+
+  const onSetSelectedBlock = (blockId: number, blockName: string) => {
+    if (blockName !== 'canvas') {
+      onBlockSelected(blockName);
+    }
+    setSelectedBlock(blockId);
   };
 
   const onBlockDropped = (
@@ -100,6 +104,8 @@ export const FlowProvider = ({ children, blocks, padding }: FlowProviderProps) =
         blocks: blockItems as Block[],
         pushTemplate,
         templates,
+        selectedBlock,
+        setSelectedBlock: onSetSelectedBlock,
       }}
     >
       <DndProvider

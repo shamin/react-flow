@@ -4,6 +4,7 @@ import { Block, BlockItem, FlowPosition, StringOrNull } from '../types';
 import CanvasPortal from './canvasPortal';
 import { getAllChildrenBlocks } from './core';
 import { Action, attachBlocks, removeBlocks } from './state/actions';
+import { setNotDraggingStyles } from './styles';
 
 interface FlowDragContextTypes {
   findChildrenSetTemp: (
@@ -120,6 +121,7 @@ const useFlowDragging = (
         y: e.clientY - clickPos.y,
       });
 
+      setNotDraggingStyles();
       setDrop(null);
       setDrag(null);
     };

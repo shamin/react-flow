@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useDnd } from '../dnd/provider';
 import { FlowPosition } from '../types';
 import { useInternalFlowDrag } from './flowDragController';
+import { setDraggingStyles } from './styles';
 
 interface DraggableBlockProps {
   id: number;
@@ -38,6 +39,7 @@ const DraggableBlock: React.FC<DraggableBlockProps> = ({
   return (
     <div>
       <div
+        data-react-flow-draggable-flow={id}
         style={{
           display: 'inline-block',
           userSelect: 'none',
@@ -90,6 +92,7 @@ const useDragging = (
   useEffect(() => {
     const onMouseMove = () => {
       setDragging(true);
+      setDraggingStyles();
       if (watchMove) {
         onDragStart(clickPos, dragPos);
       }

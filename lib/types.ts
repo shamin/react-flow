@@ -1,5 +1,15 @@
 export type StringOrNull = string | null;
 
+interface ComponentProps {
+  isActive: boolean;
+}
+
+export interface Template {
+  width: number;
+  height: number;
+  component: (component: ComponentProps) => React.ReactChild;
+}
+
 export interface FlowBlocks {}
 
 export interface FlowPosition {

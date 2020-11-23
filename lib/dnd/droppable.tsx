@@ -7,6 +7,7 @@ interface DroppableProps {
   offsetHeight: number | string;
   droppable: boolean;
   dropHighlightElement?: (onDropActivate: boolean) => React.ReactNode;
+  onClick?: () => void;
 }
 
 export const Droppable: React.FC<DroppableProps> = ({
@@ -15,6 +16,7 @@ export const Droppable: React.FC<DroppableProps> = ({
   offsetHeight,
   droppable,
   dropHighlightElement,
+  onClick,
 }: DroppableProps) => {
   const { drag, setDrop } = useDnd();
 
@@ -41,6 +43,11 @@ export const Droppable: React.FC<DroppableProps> = ({
 
   return (
     <div
+      onClick={(e) => {
+        if (e.target === e.currentTarget) {
+          onClick && onClick();
+        }
+      }}
       style={{
         userSelect: 'none',
         position: 'relative',

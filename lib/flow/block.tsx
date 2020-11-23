@@ -36,7 +36,7 @@ interface BlockProps {
 }
 
 const BlockComponent: React.FC<BlockProps> = ({ x, y, name, id }: BlockProps) => {
-  const { templates } = useInteralFlow();
+  const { templates, setSelectedBlock, selectedBlock } = useInteralFlow();
   const { component } = templates[name];
   return (
     <div
@@ -50,7 +50,7 @@ const BlockComponent: React.FC<BlockProps> = ({ x, y, name, id }: BlockProps) =>
         id={id}
         draggable
         onClick={() => {
-          console.log('Clicked on block', name);
+          setSelectedBlock(id, name);
         }}
       >
         <Droppable
@@ -61,7 +61,7 @@ const BlockComponent: React.FC<BlockProps> = ({ x, y, name, id }: BlockProps) =>
             <DragHighlight onDragOver={onDragOver} />
           )}
         >
-          <div>{component}</div>
+          <div>{component({ isActive: selectedBlock === id })}</div>
         </Droppable>
       </DraggableBlock>
     </div>

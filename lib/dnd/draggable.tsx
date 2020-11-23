@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import Portal from '@space-kit/portal';
 import { useDragging } from './hooks';
-import { FlowPosition } from '../types';
+import { FlowPosition, Template } from '../types';
 import { useDnd } from './provider';
 import { useInteralFlow } from '../flow/provider';
 
@@ -11,7 +11,7 @@ interface DraggableProps {
   draggable?: boolean;
   clone?: boolean;
   onClick?: () => void;
-  blockTemplete: React.ReactChild;
+  blockTemplete: Template['component'];
   width: number;
   height: number;
 }
@@ -59,6 +59,7 @@ export const Draggable: React.FC<DraggableProps> = ({
   return (
     <div>
       <div
+        data-react-flow-draggable={id}
         style={{
           display: 'inline-block',
           userSelect: 'none',
@@ -73,7 +74,6 @@ export const Draggable: React.FC<DraggableProps> = ({
             {React.createElement(
               'div',
               {
-                className: 'draggable__item',
                 style: {
                   position: 'fixed',
                   top: dragPosition.y,

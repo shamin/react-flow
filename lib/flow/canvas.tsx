@@ -13,7 +13,7 @@ interface CanvasProps {
 export const Canvas: React.FC<CanvasProps> = ({ style }: CanvasProps) => {
   const canvasRef = useRef(null);
 
-  const { firstBlockPosition, padding, blocks } = useInteralFlow();
+  const { firstBlockPosition, padding, blocks, setSelectedBlock } = useInteralFlow();
 
   const [firstBlockPos, setFirstBlockPos] = useState(firstBlockPosition);
 
@@ -50,7 +50,14 @@ export const Canvas: React.FC<CanvasProps> = ({ style }: CanvasProps) => {
 
   return (
     <div ref={canvasRef} style={style} className="canvas">
-      <Droppable id="canvas" droppable={blocks.length <= 0} offsetHeight={'100%'}>
+      <Droppable
+        id="canvas"
+        droppable={blocks.length <= 0}
+        offsetHeight={'100%'}
+        onClick={() => {
+          setSelectedBlock(-1, 'canvas');
+        }}
+      >
         <div>
           {blocksWithPosition.map((b) => (
             <React.Fragment key={b.id}>

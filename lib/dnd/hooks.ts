@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { setNotDraggingStyles, setDraggingStyles } from '../flow/styles';
 import { FlowPosition } from '../types';
 
 export const useDragging = (
@@ -32,6 +33,7 @@ export const useDragging = (
       if (!dragging) {
         onDragStart(clickPos);
         setDragging(true);
+        setDraggingStyles();
       }
       setdragPosition({
         x: e.clientX - clickPos.x,
@@ -50,6 +52,7 @@ export const useDragging = (
         x: e.clientX - clickPos.x,
         y: e.clientY - clickPos.y,
       });
+      setNotDraggingStyles();
     };
 
     if (watchMove) {
