@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { DndProvider } from '../dnd/provider';
-import { Block, BlockItem, FlowBlocks, FlowPosition, Template } from '../types';
+import { Block, BlockItem, FlowPosition, Template } from '../types';
 import FlowDragController from './flowDragController';
 import { addNewBlock, setBlocks, setInitialBlock } from './state/actions';
 import { useBlockState } from './state/reducer';
@@ -31,6 +31,7 @@ interface FlowProviderProps {
   padding: FlowPosition;
   onBlockSelected: (blockId: string) => void;
   arrowColor?: string;
+  onBlockChange: (blocks: BlockItem[]) => void;
 }
 
 export const FlowProvider = ({
@@ -39,8 +40,9 @@ export const FlowProvider = ({
   padding,
   arrowColor = '#000000',
   onBlockSelected,
+  onBlockChange,
 }: FlowProviderProps) => {
-  const [{ blocks: blockItems }, dispatch] = useBlockState();
+  const [{ blocks: blockItems, drag }, dispatch] = useBlockState();
   const [templates, setTemplates] = useState<Templates>({});
   const pushTemplate = (id: string, template: Template) => {
     setTemplates((templates) => ({ ...templates, [id]: template }));
@@ -57,6 +59,12 @@ export const FlowProvider = ({
     setNotDraggingStyles();
     dispatch(setBlocks(blocks));
   }, []);
+
+  useEffect(() => {
+    if (!drag) {
+      onBlockChange(blockItems);
+    }
+  }, [blockItems, drag]);
 
   const onSetFirstBlockPosition = (position: FlowPosition) => {
     setFirstBlockPosition(position);

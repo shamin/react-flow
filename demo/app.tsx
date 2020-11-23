@@ -1,5 +1,5 @@
 import React from 'react';
-import { Canvas, DraggableBlock, FlowProvider } from '../lib';
+import { Canvas, DraggableBlock, FlowProvider, BlockItem } from '../lib';
 
 const blocks = [
   {
@@ -65,6 +65,9 @@ const App = () => (
     arrowColor="#ffffff"
     onBlockSelected={(blockId: string) => {
       console.log('Block selected', blockId);
+    }}
+    onBlockChange={(blocks: BlockItem[]) => {
+      console.log(blocks);
     }}
   >
     <Canvas
