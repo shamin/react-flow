@@ -33,6 +33,9 @@ const FlowDragController = ({
   onCanvasDrag,
   children,
 }: FlowDragControllerProps) => {
+  const [tempBlockParent, setTempBlockParent] = useState<number>(-1);
+  const [tempBlocks, setTempBlocks] = useState<BlockItem[]>();
+
   const onDrop = (drop: StringOrNull, dropPosition: FlowPosition) => {
     setTempBlocks(undefined);
     if (!drop) {
@@ -56,8 +59,6 @@ const FlowDragController = ({
     dragPos,
     clickPos,
   } = useFlowDragging(onDrop);
-  const [tempBlocks, setTempBlocks] = useState<BlockItem[]>();
-  const [tempBlockParent, setTempBlockParent] = useState<number>();
 
   const findChildrenSetTemp = (
     blockId: number,

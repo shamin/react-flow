@@ -1,10 +1,16 @@
 import { BlockItem } from '../../types';
 
 export type Action =
+  | { type: 'setBlocks'; blocks: BlockItem[] }
   | { type: 'setInitialBlock'; block: BlockItem }
   | { type: 'addNewBlock'; block: BlockItem }
   | { type: 'removeBlocks'; blockIds: number[] }
   | { type: 'attachBlocks'; blocks: BlockItem[]; newParent: number };
+
+export const setBlocks = (blocks: BlockItem[]): Action => ({
+  type: 'setBlocks',
+  blocks,
+});
 
 export const setInitialBlock = (block: BlockItem): Action => ({
   type: 'setInitialBlock',

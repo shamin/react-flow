@@ -2,7 +2,7 @@ const el = document.createElement('style');
 el.type = 'text/css';
 
 const head = document.querySelector('head');
-head.appendChild(el);
+head && head.appendChild(el);
 
 const setStyle = (newStyles: string) => {
   el.innerHTML = newStyles;

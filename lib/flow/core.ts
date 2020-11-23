@@ -105,6 +105,7 @@ export function getAllChildrenBlocks(
     return [
       ...children,
       ...children.reduce(
+        // @ts-ignore
         (acc, child) => acc.concat(getAllChildrenBlocks(blocks, { id: child.id })),
         []
       ),

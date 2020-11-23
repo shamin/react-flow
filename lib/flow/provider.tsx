@@ -69,8 +69,8 @@ export const FlowProvider = ({
   };
 
   const onBlockDropped = (
-    drag: StringOrNull,
-    drop: StringOrNull,
+    drag: string,
+    drop: string,
     dropPosition: FlowPosition
   ) => {
     if (blockItems.length === 0) {
