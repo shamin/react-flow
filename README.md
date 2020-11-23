@@ -1,10 +1,14 @@
 # React Flow
 
+[![npm version](https://badge.fury.io/js/%40space-kit%2Freact-flow.svg)](https://badge.fury.io/js/%40space-kit%2Freact-flow)
+
 ## Installation
 
 ```
 npm install --save @space-kit/react-flow
 ```
+## Example
+You can test react flowy in this [codesandbox](https://codesandbox.io/s/react-flow-hjpdo?file=/src/App.tsx).
 
 ## Documentation
 
