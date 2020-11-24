@@ -79,39 +79,51 @@ const App = () => (
         overflow: 'scroll',
       }}
     />
-    <DraggableBlock
-      id="block1"
-      draggable
-      blockTemplate={({ isActive }) => (
-        <DragTemplate data="Block 1" isActive={isActive} />
-      )}
-      width={100}
-      height={60}
+    <div
+      style={{
+        display: 'inline-grid',
+        gridTemplateColumns: 'auto auto auto',
+        padding: 10,
+        columnGap: 20,
+      }}
     >
-      Blocks
-    </DraggableBlock>
-    <DraggableBlock
-      id="block2"
-      draggable
-      blockTemplate={({ isActive }) => (
-        <DragTemplate data="Block 2" isActive={isActive} />
-      )}
-      width={100}
-      height={60}
-    >
-      Block 2
-    </DraggableBlock>
-    <DraggableBlock
-      id="block3"
-      draggable
-      blockTemplate={({ isActive }) => (
-        <DragTemplate data="Block 3" isActive={isActive} />
-      )}
-      width={100}
-      height={60}
-    >
-      Blocks 3
-    </DraggableBlock>
+      <DraggableBlock
+        id="block1"
+        draggable
+        blockTemplate={({ isActive }) => (
+          <DragTemplate data="Block 1" isActive={isActive} />
+        )}
+        width={100}
+        height={60}
+        clone
+      >
+        <div style={{ padding: 20, border: '1px solid #000' }}>Block 1</div>
+      </DraggableBlock>
+      <DraggableBlock
+        id="block2"
+        draggable
+        blockTemplate={({ isActive }) => (
+          <DragTemplate data="Block 2" isActive={isActive} />
+        )}
+        width={100}
+        height={60}
+        clone
+      >
+        <div style={{ padding: 20, border: '1px solid #000' }}>Block 2</div>
+      </DraggableBlock>
+      <DraggableBlock
+        id="block3"
+        draggable
+        blockTemplate={({ isActive }) => (
+          <DragTemplate data="Block 3" isActive={isActive} />
+        )}
+        width={100}
+        height={60}
+        clone
+      >
+        <div style={{ padding: 20, border: '1px solid #000' }}>Blocks 3</div>
+      </DraggableBlock>
+    </div>
   </FlowProvider>
 );
 
