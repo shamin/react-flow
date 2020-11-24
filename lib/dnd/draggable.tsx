@@ -37,7 +37,7 @@ export const Draggable: React.FC<DraggableProps> = ({
     });
   }, [id, blockTemplate]);
 
-  const onDragStart = (clickPosition: FlowPosition) => {
+  const onDragStart = () => {
     setDrag(id);
   };
 

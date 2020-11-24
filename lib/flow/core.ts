@@ -1,11 +1,11 @@
 import produce from 'immer';
 import { Block, FlowPosition } from '../types';
 
-function getBlockChildren(blocks: Block[], block: Block): Block[] {
+export const getBlockChildren = (blocks: Block[], block: Block): Block[] => {
   return blocks.filter((b) => b.parent === block.id);
-}
+};
 
-const recalcChildrenWidth = (
+export const recalcChildrenWidth = (
   blocks: Block[],
   parent: Block,
   padding: FlowPosition
@@ -94,10 +94,10 @@ export const computeAllBlockPos = (
   return newBlocks;
 };
 
-export function getAllChildrenBlocks(
+export const getAllChildrenBlocks = (
   blocks: Block[],
   parent: { id: number }
-): Block[] {
+): Block[] => {
   const children = getBlockChildren(blocks, parent as Block);
   if (children.length === 0) {
     return [];
@@ -111,4 +111,4 @@ export function getAllChildrenBlocks(
       ),
     ];
   }
-}
+};

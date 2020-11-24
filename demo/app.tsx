@@ -42,6 +42,22 @@ const blocks = [
     width: 100,
     height: 60,
   },
+  {
+    parent: 3,
+    id: 5,
+    name: 'block2',
+    type: 'block2',
+    width: 100,
+    height: 60,
+  },
+  {
+    parent: 3,
+    id: 6,
+    name: 'block3',
+    type: 'block3',
+    width: 150,
+    height: 60,
+  },
 ];
 
 const DragTemplate = ({ data, isActive }: any) => (

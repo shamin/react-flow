@@ -12,7 +12,7 @@
     "build:cjs": "tsc --module commonjs --outDir dist/cjs",
     "build:esm": "tsc --module esnext --outDir dist/esm",
     "build": "npm run build:cjs && npm run build:esm",
-    "lint": "eslint \"{src,src-docs}/**/*.{ts,tsx,js}\" --max-warnings 0 --fix"
+    "lint": "eslint \"{lib,demo}/**/*.{ts,tsx,js}\" --max-warnings 0 --fix"
   },
   "repository": {
     "type": "git",

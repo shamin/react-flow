@@ -11,5 +11,5 @@
     "allowSyntheticDefaultImports": true
   },
   "include": ["lib"],
-  "exclude": ["node_modules", "**/__tests__/*"]
+  "exclude": ["node_modules", "**/__tests__/*",  "**/__mocks__/*"]
 }
