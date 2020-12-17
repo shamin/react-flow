@@ -1,0 +1,16 @@
+version = 1
+
+test_patterns = ["*/__tests__/*.ts*"]
+
+[[analyzers]]
+name = "javascript"
+enabled = true
+
+  [analyzers.meta]
+  environment = [
+    "browser",
+    "jest"
+  ]
+  plugins = ["react"]
+  dialect = "typescript"
+  style_guide = "standard"
